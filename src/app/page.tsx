@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import { validationSchema } from "./utils/validation";
-import { BalanceSymbolPairs } from "./component/balance-symbole-pairs";
+import { BalanceSymbolPairs } from "./component/balance-symbol-pairs";
 import { useRouter } from "next/navigation";
 
 export interface BalancePair {
