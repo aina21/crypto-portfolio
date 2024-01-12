@@ -13,8 +13,14 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors:{
+        'eToro-green': '#6bf5c0',
+        'green-300': '#13c636',
+        'green-200': '#22ea49;        ',
+      },
+      
+      }
     },
-  },
   plugins: [],
 }
 export default config
