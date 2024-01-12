@@ -74,16 +74,18 @@ const MainPage = () => {
           validationSchema={validationSchema}
           onSubmit={handleFormSubmit}
         >
-          <Form>
-            <BalanceSymbolPairs />
-            <button
-              type="submit"
-              className="bg-green-300 text-white py-2 px-4 rounded hover:bg-green-200 "
-              disabled={isLoading}
-            >
-              {isLoading ? "Loading..." : "Show Result"}
-            </button>
-          </Form>
+          {(isSubmit) => (
+            <Form>
+              <BalanceSymbolPairs />
+              <button
+                type="submit"
+                className="bg-green-300 text-white py-2 px-4 rounded hover:bg-green-200 disabled:bg-gray-300 disabled:text-gray-500"
+                disabled={isLoading || !isSubmit.isValid}
+              >
+                {isLoading ? "Loading..." : "Show Result"}
+              </button>
+            </Form>
+          )}
         </Formik>
       </div>
     </div>

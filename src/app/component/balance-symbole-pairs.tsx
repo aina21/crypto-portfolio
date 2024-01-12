@@ -39,7 +39,7 @@ export const BalanceSymbolPairs = () => (
                   type="button"
                   onClick={() => arrayHelpers.remove(index)}
                   disabled={arrayHelpers.form.values.balancePairs.length <= 2}
-                  className="bg-green-300 text-white py-2 px-4  hover:bg-green-200 rounded-full "
+                  className="bg-green-300 text-white py-2 px-4  hover:bg-green-200 rounded-full  disabled:bg-gray-300 disabled:text-gray-500"
                 >
                   -
                 </button>
