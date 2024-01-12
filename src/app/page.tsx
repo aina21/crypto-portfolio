@@ -20,7 +20,9 @@ interface CoinGeckoResponse {
   };
 }
 
-async function getSimplePrice(cryptoIds: string[]): Promise<CoinGeckoResponse> {
+const getSimplePrice = async (
+  cryptoIds: string[]
+): Promise<CoinGeckoResponse> => {
   const idsString = cryptoIds.join(",");
   const url = `https://api.coingecko.com/api/v3/simple/price?ids=${idsString}&vs_currencies=usd`;
 
@@ -30,7 +32,7 @@ async function getSimplePrice(cryptoIds: string[]): Promise<CoinGeckoResponse> {
   }
 
   return await res.json();
-}
+};
 
 const initialValues: { balancePairs: BalancePair[] } = {
   balancePairs: [
@@ -44,24 +46,26 @@ const MainPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const handleFormSubmit = (values: BalancePairValues) => {
+  const handleFormSubmit = async (values: BalancePairValues) => {
     setIsLoading(true);
     const cryptoIds = values.balancePairs.map((pair) => pair.coin);
 
-    getSimplePrice(cryptoIds)
-      .then((data: CoinGeckoResponse) => {
-        const totalValueUSD = values.balancePairs.reduce((total, pair) => {
-          const usdValue = data[pair.coin]?.usd || 0;
-          const balance = parseFloat(pair.balance) || 0;
-          return total + usdValue * balance;
-        }, 0);
-        setIsLoading(false);
-        router.push(`/result?total=${totalValueUSD.toString()}`);
-      })
-      .catch((error) => {
-        console.error("Error fetching crypto prices:", error);
-        setError(error);
-      });
+    try {
+      const data = await getSimplePrice(cryptoIds);
+
+      const totalValueUSD = values.balancePairs.reduce((total, pair) => {
+        const usdValue = data[pair.coin]?.usd || 0;
+        const balance = parseFloat(pair.balance) || 0;
+        return total + usdValue * balance;
+      }, 0);
+
+      router.push(`/result?total=${totalValueUSD.toString()}`);
+    } catch (error: any) {
+      console.error("Error fetching crypto prices:", error);
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
