@@ -66,7 +66,7 @@ const MainPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="container mx-auto p-4 ">
+      <div className="container p-4 max-w-[800px]">
         <h1 className="text-3xl font-semibold mb-4">Main Page</h1>
         {error && <p className="text-rose-500">{error}</p>}
         <Formik

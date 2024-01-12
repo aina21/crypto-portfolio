@@ -11,14 +11,14 @@ export const BalanceSymbolPairs = () => (
           (pair: BalancePair, index: number) => (
             <div
               key={index}
-              className="flex flex-col space-x-3 md:flex-row mb-4 space-y-4 md:space-y-0"
+              className="flex flex-col md:space-x-3 md:flex-row mb-4 space-y-4 md:space-y-0 "
             >
               <div className="md:w-1/2 ">
                 <label
                   htmlFor={`balancePairs[${index}].coin`}
                   className="block text-sm font-bold mb-2"
                 >
-                  Choose Coin:
+                  Coin:
                 </label>
                 <CoinSelect
                   name={`balancePairs[${index}].coin`}
@@ -30,11 +30,11 @@ export const BalanceSymbolPairs = () => (
                   htmlFor={`balancePairs[${index}].balance`}
                   className="block text-sm font-bold mb-2"
                 >
-                  Enter Balance:
+                  Balance:
                 </label>
                 <BalanceInput name={`balancePairs[${index}].balance`} />
               </div>
-              <div className="relative top-[30px] max-h-[40px] flex space-x-2 ">
+              <div className="max-h-[40px] flex space-x-2 md:relative md:top-[30px]  ">
                 <button
                   type="button"
                   onClick={() => arrayHelpers.remove(index)}
