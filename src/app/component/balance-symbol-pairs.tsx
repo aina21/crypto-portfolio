@@ -20,10 +20,7 @@ export const BalanceSymbolPairs = () => (
                 >
                   Coin:
                 </label>
-                <CoinSelect
-                  name={`balancePairs[${index}].coin`}
-                  value={pair.coin}
-                />
+                <CoinSelect name={`balancePairs[${index}].coin`} />
               </div>
               <div className="md:w-1/2">
                 <label

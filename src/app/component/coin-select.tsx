@@ -1,9 +1,6 @@
 import { ErrorMessage, Field } from "formik";
 
-export const CoinSelect: React.FC<{ name: string; value: string }> = ({
-  name,
-  value,
-}) => (
+export const CoinSelect: React.FC<{ name: string }> = ({ name }) => (
   <div>
     <Field
       as="select"
